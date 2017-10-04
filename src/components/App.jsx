@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Tiles from './Tiles/Tiles.jsx';
 import Tile from './Tiles/Tile.jsx';
 import Chart from './Chart/Chart.jsx';
+import Banner from './Chart/Banner.jsx';
 import Header from './Chart/Header.jsx';
 import Feature from './Chart/Feature.jsx';
 import Slider from './Chart/Slider.jsx';
@@ -15,10 +16,12 @@ class App extends Component {
     super(props);
 
     this.state = {
-      activeTiles: []
+      activeTiles: [],
+      productClicked: false
     };
 
     this.handleTileClick = this.handleTileClick.bind(this);
+    this.handleProductClick = this.handleProductClick.bind(this);
   }
 
   handleTileClick(highestRecommendedSku) {
@@ -35,8 +38,17 @@ class App extends Component {
     });
   }
 
+  handleProductClick(sku) {
+    this.setState({productClicked: sku});
+  }
+
   render() {
     const recommendedSku = calculateSku(this.state.activeTiles, skuRanking);
+
+    const highlighted = [
+      recommendedSku,
+      this.state.productClicked
+    ];
 
     return (
       <div className="app">
@@ -64,8 +76,23 @@ class App extends Component {
               chartData.products.map((product, index) => {
                 return (
                   <div className="col" key={index}>
-                    <Header sku={product.sku}
+                    <Banner sku={product.sku}
                       recommendedSku={recommendedSku} />
+                  </div>
+                );
+              })
+            }
+          </div>
+
+          <div className="row">
+            {
+              chartData.products.map((product, index) => {
+                return (
+                  <div className="col" key={index}>
+                    <Header sku={product.sku}
+                      recommendedSku={recommendedSku}
+                      highlighted={highlighted}
+                      handleProductClick={this.handleProductClick} />
                   </div>
                 );
               })
@@ -80,7 +107,9 @@ class App extends Component {
                 return (
                   <div className="col" key={index}>
                     <Feature sku={product.sku}
-                      recommendedSku={recommendedSku} />
+                      recommendedSku={recommendedSku}
+                      highlighted={highlighted}
+                      handleProductClick={this.handleProductClick} />
                   </div>
                 );
               })

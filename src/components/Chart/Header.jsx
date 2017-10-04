@@ -3,20 +3,19 @@ import React from 'react';
 export default function Product(props) {
   const highlightedClass = (
     !props.recommendedSku
-    || props.recommendedSku === props.sku
+    || props.highlighted.indexOf(props.sku) > -1
     ? ' highlighted'
     : ''
   );
 
+  function handleProductClick() {
+    props.handleProductClick(props.sku);
+  }
+
   return (
     <div className={`header`}>
-      <div className="bannerWrap">
-        {
-          props.recommendedSku === props.sku
-          && <div className="banner">Recommended</div>
-        }
-      </div>
-      <div className={`headerBody${highlightedClass}`}>Header Body</div>
+      <div className={`headerBody${highlightedClass}`}
+        onClick={handleProductClick}>Header Body</div>
     </div>
   )
 }
