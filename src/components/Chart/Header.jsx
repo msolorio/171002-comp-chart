@@ -9,8 +9,14 @@ export default function Product(props) {
   );
 
   return (
-    <div className={`header${highlightedClass}`}>
-      Header Component
+    <div className={`header`}>
+      <div className="bannerWrap">
+        {
+          props.recommendedSku === props.sku
+          && <div className="banner">Recommended</div>
+        }
+      </div>
+      <div className={`headerBody${highlightedClass}`}>Header Body</div>
     </div>
   )
 }

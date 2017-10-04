@@ -1,13 +1,25 @@
-.header,
+.headerBody,
 .slider,
 .feature {
   border: 1px solid #555;
   padding: 20px;
 }
 
-.header,
+.headerBody,
 .feature {
   cursor: pointer;
+}
+
+.bannerWrap {
+  height: 30px;
+}
+
+.banner {
+  height: 100%;
+  padding-top: 6px;
+  border: 1px solid #555;
+  text-align: center;
+  background: #9999dd;
 }
 
 .highlighted {
