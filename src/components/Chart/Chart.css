@@ -1,0 +1,15 @@
+.header,
+.slider,
+.feature {
+  border: 1px solid #555;
+  padding: 20px;
+}
+
+.header,
+.feature {
+  cursor: pointer;
+}
+
+.highlighted {
+  background: #9999dd;
+}

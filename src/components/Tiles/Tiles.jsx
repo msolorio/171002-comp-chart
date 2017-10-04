@@ -3,7 +3,7 @@ import './Tiles.css';
 
 export default function Tiles(props) {
   return (
-    <div className="tiles row">
+    <div className="tiles">
       {props.children}
     </div>
   );

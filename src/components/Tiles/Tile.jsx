@@ -3,10 +3,10 @@ import React from 'react';
 export default function Tile(props) {
 
   function handleTileClick() {
-    props.handleTileClick(props.sku);
+    props.handleTileClick(props.highestRecommendedSku);
   }
 
-  const activeClass = props.activeTiles.indexOf(props.sku) > -1 ? ' tile-active' : '';
+  const activeClass = props.activeTiles.indexOf(props.highestRecommendedSku) > -1 ? ' tile-active' : '';
 
   return (
     <div className={`tile${activeClass}`}
