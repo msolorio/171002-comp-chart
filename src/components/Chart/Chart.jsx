@@ -1,7 +1,9 @@
 import React from 'react';
 
-export default function Chart() {
+export default function Chart(props) {
   return (
-    <div className="Chart">Chart component</div>
+    <div className="chart">
+      {props.children}
+    </div>
   );
 }

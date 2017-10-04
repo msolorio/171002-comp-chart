@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Tiles from './Tiles/Tiles.jsx';
 import Tile from './Tiles/Tile.jsx';
 import Chart from './Chart/Chart.jsx';
+import Product from './Chart/Product.jsx';
 import tileData from './Tiles/tilesData';
 import calculateSku from '../utilities/calculateSku';
 import skuRanking from '../utilities/skuRanking';
@@ -52,7 +53,9 @@ class App extends Component {
           }
         </Tiles>
 
-        <Chart recommendedSku={recommendedSku} />
+        <Chart recommendedSku={recommendedSku}>
+          <Product />
+        </Chart>
       </div>
     );
   }
