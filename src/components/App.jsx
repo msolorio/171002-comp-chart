@@ -17,11 +17,14 @@ class App extends Component {
 
     this.state = {
       activeTiles: [],
-      productClicked: false
+      productClicked: false,
+      productHovered: false
     };
 
     this.handleTileClick = this.handleTileClick.bind(this);
     this.handleProductClick = this.handleProductClick.bind(this);
+    this.handleProductMouseEnter = this.handleProductMouseEnter.bind(this);
+    this.handleProductMouseLeave = this.handleProductMouseLeave.bind(this);
   }
 
   handleTileClick(highestRecommendedSku) {
@@ -42,12 +45,21 @@ class App extends Component {
     this.setState({productClicked: sku});
   }
 
+  handleProductMouseEnter(sku) {
+    this.setState({productHovered: sku});
+  }
+
+  handleProductMouseLeave(sku) {
+    this.setState({productHovered: false});
+  }
+
   render() {
     const recommendedSku = calculateSku(this.state.activeTiles, skuRanking);
 
     const highlighted = [
       recommendedSku,
-      this.state.productClicked
+      this.state.productClicked,
+      this.state.productHovered
     ];
 
     return (
@@ -92,7 +104,9 @@ class App extends Component {
                     <Header sku={product.sku}
                       recommendedSku={recommendedSku}
                       highlighted={highlighted}
-                      handleProductClick={this.handleProductClick} />
+                      handleProductClick={this.handleProductClick}
+                      handleProductMouseEnter={this.handleProductMouseEnter}
+                      handleProductMouseLeave={this.handleProductMouseLeave} />
                   </div>
                 );
               })
